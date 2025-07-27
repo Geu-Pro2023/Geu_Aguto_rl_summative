@@ -28,6 +28,9 @@ project_root/
 ## Environment Description
 
 ### Cattle Monitoring Environment
+
+![Cattle Monitoring Demo](cattle_monitoring_demo.gif)
+
 - **Grid Size**: 10x10 representing rural South Sudan landscape
 - **Agent**: Herder navigating the environment
 - **Entities**:
@@ -202,6 +205,8 @@ The RL agent learns optimal strategies for:
 ## Discussion & Analysis
 
 ### Performance Comparison Using Metrics
+
+![Performance Comparison](rl_comparison_results.png)
 
 #### Quantitative Results
 | Algorithm | Mean Reward | Std Deviation | Success Rate | Training Efficiency |
