@@ -1,8 +1,8 @@
-# Cattle Monitoring RL Assignment - Geu Aguto Garang Bior
+# Biometric & Blockchain-Based Cattle Verification RL Assignment - Geu Aguto Garang Bior
 
 ## Non-IoT Cattle Raiding Prevention System Using Reinforcement Learning
 
-This project implements a reinforcement learning solution for cattle monitoring and theft prevention in South Sudan, comparing four different RL algorithms: DQN (Value-Based), REINFORCE, PPO, and Actor-Critic methods.
+This project implements a reinforcement learning solution for biometric cattle verification and theft prevention in South Sudan. The system simulates an intelligent agent learning optimal strategies for cattle registration, biometric verification, and theft detection using blockchain-based ownership records. The RL environment models real-world challenges of cattle raiding prevention, comparing DQN (Value-Based) and REINFORCE (Policy Gradient) algorithms for automated cattle monitoring and verification systems.
 
 ## Project Structure
 
@@ -27,26 +27,28 @@ project_root/
 
 ## Environment Description
 
-### Cattle Monitoring Environment
+### Biometric Cattle Verification Environment
 
 ![Cattle Monitoring Demo](cattle_monitoring_demo.gif)
 
-- **Grid Size**: 10x10 representing rural South Sudan landscape
-- **Agent**: Herder navigating the environment
+- **Grid Size**: 10x10 representing rural South Sudan marketplace and grazing areas
+- **Agent**: Biometric verification system operator (herder/market official)
 - **Entities**:
-  - 🟢 Agent (Herder)
-  - 🟤 Cattle (brown circles, red if stolen)
-  - 🔺 Raiders (red triangles)
-  - 🟦 Registration Points (blue squares)
-  - 🟨 Checkpoints (yellow squares)
+  - 🟢 Agent (Verification Operator)
+  - 🟤 Cattle (brown circles with biometric traits, red if flagged as stolen)
+  - 🔺 Raiders/Thieves (red triangles attempting illegal resale)
+  - 🟦 Biometric Registration Points (blue squares for nose print/coat pattern scanning)
+  - 🟨 Market Verification Checkpoints (yellow squares for ownership verification)
+
+**Mission Context**: The agent learns to efficiently navigate between cattle, perform biometric scans at registration points, and verify ownership at market checkpoints. The system prevents illegal cattle resale by matching biometric traits (nose prints, coat patterns) against blockchain-stored ownership records, alerting rightful owners when stolen cattle are detected.
 
 ### Action Space (Discrete - 6 actions)
 0. Move Up
 1. Move Down  
 2. Move Left
 3. Move Right
-4. Register Cattle (at registration points)
-5. Alert Authorities (at checkpoints)
+4. Scan Biometric Traits (nose print/coat pattern at registration points)
+5. Verify Ownership (blockchain verification at market checkpoints)
 
 ### Observation Space
 - Agent position (2D)
@@ -57,17 +59,17 @@ project_root/
 
 ### Reward Structure
 - **Step penalty**: -0.1 (encourages efficiency)
-- **Cattle registration**: +15 (at registration points)
-- **Alert authorities**: +20 (when stolen cattle detected)
-- **False alert**: -2 (alerting without stolen cattle)
-- **Raider encounter**: -10 (collision penalty)
-- **Mission success**: +50 (≥2 cattle registered + ≥1 alert sent)
+- **Biometric registration**: +15 (successful nose print/coat pattern scanning)
+- **Ownership verification**: +20 (successful blockchain verification at checkpoints)
+- **False verification**: -2 (incorrect ownership claims)
+- **Thief encounter**: -10 (collision with raiders attempting illegal resale)
+- **Mission success**: +50 (≥2 cattle biometrically registered + ≥1 ownership verified)
 - **Timeout penalty**: -20 (exceeding max steps)
 
 ### Termination Conditions
-- **Success**: Register ≥2 cattle AND send ≥1 alert
+- **Success**: Biometrically register ≥2 cattle AND verify ≥1 ownership at market checkpoint
 - **Timeout**: Exceed 200 steps
-- **Failure**: Continuous poor performance
+- **Failure**: Continuous poor performance in biometric verification tasks
 
 ## Installation
 
@@ -190,17 +192,19 @@ The system demonstrates:
 
 ## Mission Context
 
-This project addresses cattle raiding in South Sudan by:
-- Simulating herder navigation challenges
-- Modeling theft detection scenarios  
-- Testing automated alert systems
-- Evaluating AI-driven monitoring solutions
+This project addresses cattle raiding in South Sudan through biometric verification by:
+- Simulating biometric cattle identification challenges
+- Modeling blockchain-based ownership verification scenarios
+- Testing automated theft prevention systems
+- Evaluating AI-driven biometric matching solutions
 
 The RL agent learns optimal strategies for:
-- Efficient cattle registration
-- Theft detection and reporting
-- Avoiding dangerous encounters
-- Maximizing mission success rates
+- Efficient biometric trait scanning (nose prints, coat patterns)
+- Blockchain-based ownership verification
+- Preventing illegal cattle resale at markets
+- Maximizing verification accuracy and system trust
+
+**Real-World Application**: This RL simulation models the decision-making process for a biometric cattle verification system that uses nose prints and coat patterns stored on blockchain ledgers. The system helps herders prove ownership, prevents stolen cattle resale, and supports conflict resolution in rural South Sudan markets.
 
 ## Discussion & Analysis
 
