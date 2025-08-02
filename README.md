@@ -1,6 +1,5 @@
-# Biometric & Blockchain-Based Cattle Verification RL Assignment - Geu Aguto Garang Bior
-
-## Non-IoT Cattle Raiding Prevention System Using Reinforcement Learning
+# Biometric & Blockchain-Based Cattle Verification RL Assignment
+## Cattle Raiding Prevention System Using Reinforcement Learning
 
 This project implements a reinforcement learning solution for biometric cattle verification and theft prevention in South Sudan. The system simulates an intelligent agent learning optimal strategies for cattle registration, biometric verification, and theft detection using blockchain-based ownership records. The RL environment models real-world challenges of cattle raiding prevention, comparing DQN (Value-Based) and REINFORCE (Policy Gradient) algorithms for automated cattle monitoring and verification systems.
 
