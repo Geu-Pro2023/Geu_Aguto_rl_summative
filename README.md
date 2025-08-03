@@ -18,7 +18,8 @@ This project implements a comprehensive reinforcement learning system for cattle
 
 ### Custom Gymnasium Environment: `CattleVerificationEnv`
 
-![Cattle Monitoring Demo](recordings/random_agent_demo.gif)
+<img width="641" height="525" alt="report" src="https://github.com/user-attachments/assets/2a7fccfb-b3ce-405a-ac17-3e93c0f21bae" />
+
 
 **State Space**: Dictionary observation containing:
 - `agent`: Agent position (2D coordinates)
