@@ -89,6 +89,52 @@ This project implements a comprehensive reinforcement learning system for cattle
 
 **Performance Impact**: Baseline normalization crucial for reducing high variance, sufficient episodes needed for stable policy learning in complex environment.
 
+
+## Experimental Results and Analysis 
+
+This summarizes the results of various reinforcement learning algorithms (DQN, PPO, REINFORCE, and Actor-Critic) tested under different hyperparameter configurations.
+
+### DQN Experiments
+
+| Experiment | Key Hyperparameters | Final Mean Reward | Best Mean Reward | Final Ep. Length | Best Ep. Length | Convergence | Notes |
+|------------|---------------------|------------------|------------------|------------------|-----------------|-------------|-------|
+| **DQN #1** | `lr=0.001, γ=0.99, batch=32, eps=1.0→0.02, expl_frac=0.1, buf=10k` | 38,000 | 40,000 | 122 | 142 | Partial | Peak at 60k steps, then unstable. High learning rate may cause instability. |
+| **DQN #2** | `lr=0.0005, γ=0.99, batch=32, eps=1.0→0.02, expl_frac=0.1, buf=50k` | 31,000 | 35,600 | 111 | 134 | Partial | Late surge after 80k steps, then drop. Better stability than #1. |
+| **DQN #3** | `lr=0.0005, γ=0.99, batch=64, eps=1.0→0.02, expl_frac=0.3, buf=50k` | 4,521 | 7,693 | 4.7 | 6.5 | No | Highly unstable, failed to learn. Larger batch + more exploration hurt performance. |
+| **DQN #4** | `lr=0.00025, γ=0.95, batch=64, eps=1.0→0.02, expl_frac=0.2, buf=100k` | 5,871 | 7,609 | 7.4 | 10.0 | No | Better than #3 but still unstable. Conservative settings didn't help enough. |
+
+### PPO Experiments
+
+| Experiment | Key Hyperparameters | Final Mean Reward | Best Mean Reward | Final Ep. Length | Best Ep. Length | Convergence | Training Stability | Notes |
+|------------|---------------------|------------------|------------------|------------------|-----------------|-------------|--------------------|-------|
+| **PPO #1** | `lr=0.0001, γ=1.0, n_steps=4096, batch=128, ent_coef=0.0, clip=0.1, epochs=10, net=[64,64]` | 11,236 | 13,688 | 99.98 | 100.0 | Partial | Good | Conservative exploitation-focused settings. Shows learning but plateaus after 33k steps. |
+| **PPO #2** | `lr=0.0003, γ=1.0, n_steps=2048, batch=128, ent_coef=0.01, clip=0.2, epochs=10, net=[64,64]` | 13,190.22 | 16,074.91 | 100.00 | 100.00 | Partial | Moderate | Exploration-focused settings. Higher peak reward but unstable late training. |
+| **PPO #3** | `lr=0.0002, γ=1.0, n_steps=4096, batch=128, ent_coef=0.02, clip=0.25, epochs=10, net=[64,64]` | 16,852.97 | 16,852.97 | 100.00 | 100.00 | Good | Good | Fine-tuned settings. Strong reward trend, stable performance. |
+
+### REINFORCE Experiments
+
+| Experiment | Total Timesteps | Final Mean Reward | Best Mean Reward | Final Ep. Length | Best Ep. Length | Learning Rate | Gamma | Update Threshold | Hidden Units | Observations |
+|------------|----------------|------------------|------------------|------------------|-----------------|---------------|-------|------------------|--------------|-------------|
+| **REINFORCE #1** | 200,000 | 7,335.98 | 7,706.22 | 4.54 | 5.19 | 0.001 | 0.99 | 100 | 64 | Noisy, unstable reward. Short episodes. |
+| **REINFORCE #2** | 200,000 | 4,432.63 | 8,654.18 | 4.68 | 5.42 | 0.0005 | 1.0 | 1000 | 128 | Early peak, decline after. Limited adaptation. |
+| **REINFORCE #3** | 200,000 | 4,315.97 | 7,339.42 | 12.33 | 12.64 | 0.005 | 1.0 | 1000 | 64 | More exploration, but poor reward improvement. |
+
+### Actor-Critic (A2C) Experiments
+
+| Experiment | Total Timesteps | Final Mean Reward | Best Mean Reward | Final Ep. Length | Best Ep. Length | Learning Rate | Gamma | n_steps | GAE Lambda | VF Coef | Max Grad Norm | Hidden Layers | Observations |
+|------------|----------------|------------------|------------------|------------------|-----------------|---------------|-------|---------|------------|---------|--------------|--------------|-------------|
+| **A2C #1** | 200,000 | 12,528.31 | 15,660.66 | 99.75 | 100.00 | 0.0001 | 1.0 | 4096 | 0.95 | 0.5 | 0.5 | [64, 64] | High early reward, then declined. |
+| **A2C #2** | 200,000 | 13,493.30 | 16,873.36 | 100.00 | 100.00 | 0.0003 | 1.0 | 2048 | 0.95 | 0.5 | 0.5 | [64, 64] | Stable, robust learning. Better than #1. |
+| **A2C #3** | 200,000 | 13,735.67 | 14,411.99 | 100.00 | 100.00 | 0.0002 | 1.0 | 4096 | - | - | - | - | - |
+
+---
+
+### Key Observations:
+- **DQN**: Performance highly sensitive to hyperparameters. Lower learning rates improve stability but may slow learning.
+- **PPO**: Fine-tuning (`PPO #3`) yields the best balance between reward and stability.
+- **REINFORCE**: Highly unstable; struggles with long-term learning.
+- **A2C**: More stable than REINFORCE, with `A2C #2` performing best.
+
 ## Project Structure
 
 ```
