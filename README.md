@@ -90,7 +90,7 @@ This project implements a comprehensive reinforcement learning system for cattle
 **Performance Impact**: Baseline normalization crucial for reducing high variance, sufficient episodes needed for stable policy learning in complex environment.
 
 
-## Experimental Results and Analysis 
+## Experimental Results, Analysis, and Key tuned-Hyperparameters
 
 This summarizes the results of various reinforcement learning algorithms (DQN, PPO, REINFORCE, and Actor-Critic) tested under different hyperparameter configurations.
 
@@ -154,14 +154,11 @@ project_root/
 ├── logs/                        # TensorBoard logs and training metrics
 ├── recordings/                  # Generated GIFs and videos
 ├── main.py                      # Main entry point
-├── random_agent_demo.py         # Random agent demonstration
 ├── evaluation.py                # Comprehensive algorithm comparison
 ├── requirements.txt             # Dependencies
 ├── performance_analysis.py      # Comprehensive algorithm comparison
-├── edge_case_testing.py         # Exhaustive action space testing
-├── video_recorder.py            # 3-minute agent demonstration videos
+├── create_gif.py                # Create gif
 ├── random_agent_demo.py         # Random agent with GIF generation
-├── demo.py                      # Live pygame demonstration
 └── README.md                    # Complete project documentation
 ```
 
@@ -398,15 +395,7 @@ The system evaluates algorithms using comprehensive metrics:
 2. **Continuous action spaces**: More realistic movement
 3. **Hierarchical RL**: High-level planning with low-level control
 4. **Real-world integration**: Mobile app connectivity
-5. **Advanced visualization**: 3D rendering with OpenGL
-
-
-## Additional Features
-✅ **Random Agent Demo**: Complete with GIF generation for report  
-✅ **Video Recording**: 3-minute agent demonstration videos  
-✅ **Edge Case Testing**: Comprehensive boundary and collision testing  
-✅ **Performance Analysis**: Automated comparison and visualization tools  
-✅ **Professional Documentation**: Complete technical documentation  
+5. **Advanced visualization**: 3D rendering with OpenGL  
 
 ## Technical Implementation Details
 
